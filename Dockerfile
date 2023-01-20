@@ -4,7 +4,7 @@ FROM ghcr.io/celestiaorg/celestia-app:v0.11.0
 
 COPY --from=celestia-node /celestia /
 
-RUN apk update && apk --no-cache add curl jq
+RUN apk update && apk --no-cache add curl jq libc6-compat
 
 COPY wait-for-it.sh /
 
