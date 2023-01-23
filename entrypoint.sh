@@ -33,16 +33,21 @@ cp -r ~/.celestia-app/keyring-test/ /bridge/keys/keyring-test/
 # Start the celestia-app
 celestia-appd start &
 
-./celestia bridge init --node.store /bridge
-sleep 10 && /wait-for-it.sh 127.0.0.1:26657 -t 90 -- \
-    curl -s http://127.0.0.1:26657/block?height=1 | jq '.result.block_id.hash' | tr -d '"' > genesis.hash
+# Try to get genesis hash. Usually first request returns empty string (port is not open, curl fails), later attempts
+# returns "null" if block was not yet produced. 
+GENESIS=
+CNT=0
+MAX=30
+while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do 
+	GENESIS=$(curl -s http://127.0.0.1:26657/block?height=1 | jq '.result.block_id.hash' | tr -d '"')
+	((CNT++))
+	sleep 1
+done
 
-curl -s http://127.0.0.1:26657/block_by_hash?hash=0x`cat genesis.hash`
-echo  # newline
-
-export CELESTIA_CUSTOM=test:`cat genesis.hash`
+export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
+./celestia bridge init --node.store /bridge
 ./celestia bridge start \
   --node.store /bridge --gateway \
   --core.ip 127.0.0.1 \
