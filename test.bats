@@ -15,21 +15,32 @@ get_second_block_id() {
 }
 
 @test "celestia-appd is producing blocks" {
+ok="false"
 for i in {1..30}; do
 	run get_second_block_id
 	if [ $status == 0 ]; then
+		ok="true"
 		break
 	fi
 	sleep 1
 done
+$($ok)
 }
 
+get_head_proposer_address() {
+	curl -s http://127.0.0.1:26659/head | grep proposer_address
+}
+
+
 @test "celestia-node is processing blocks" {
+ok="false"
 for i in {1..30}; do
-    run curl -s GET http://127.0.0.1:26659/head 2>&1
+    run get_head_proposer_address
 	if [ $status == 0 ]; then
+		ok="true"
 		break
 	fi
 	sleep 1
 done
+$($ok)
 }
