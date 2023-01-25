@@ -1,7 +1,5 @@
 # Local Celestia Devnet
 
-======================
-
 This repo provides a docker image that allows developers to spin up a local
 devnet node for testing without depending on the network or service.
 
