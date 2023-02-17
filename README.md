@@ -3,6 +3,14 @@
 This repo provides a docker image that allows developers to spin up a local
 devnet node for testing without depending on the network or service.
 
+## To run the docker image from ghcr.io
+
+```bash
+docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 ghcr.io/celestiaorg/local-celestia-devnet:main
+```
+
+## To build and run the docker image
+
 First, clone the repository:
 
 ```bash
@@ -24,7 +32,7 @@ docker build . -t celestia-local-devnet
 To run the docker container:
 
 ```bash
-docker  run -p 26657:26657 -p 26659:26659 celestia-local-devnet
+docker run --platform linux/amd64 -p 26657:26657 -p 26659:26659 celestia-local-devnet
 ```
 
 Test that the RPC server is up:
