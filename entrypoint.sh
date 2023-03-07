@@ -8,7 +8,7 @@ rm -rf /root/.celestia-app
 coins="1000000000000000utia"
 celestia-appd init $CHAINID --chain-id $CHAINID
 celestia-appd keys add validator --keyring-backend="test"
-# this won't work because the some proto types are decalared twice and the logs output to stdout (dependency hell involving iavl)
+# this won't work because some proto types are declared twice and the logs output to stdout (dependency hell involving iavl)
 celestia-appd add-genesis-account $(celestia-appd keys show validator -a --keyring-backend="test") $coins
 celestia-appd gentx validator 5000000000utia \
   --keyring-backend="test" \
@@ -33,7 +33,7 @@ cp -r ~/.celestia-app/keyring-test/ /bridge/keys/keyring-test/
 # Start the celestia-app
 celestia-appd start &
 
-# Try to get genesis hash. Usually first request returns empty string (port is not open, curl fails), later attempts
+# Try to get the genesis hash. Usually first request returns an empty string (port is not open, curl fails), later attempts
 # returns "null" if block was not yet produced. 
 GENESIS=
 CNT=0
