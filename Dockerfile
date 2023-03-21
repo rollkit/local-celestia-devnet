@@ -1,6 +1,6 @@
-FROM ghcr.io/celestiaorg/celestia-node:0.6.2 AS celestia-node
+FROM ghcr.io/celestiaorg/celestia-node:v0.7.1 AS celestia-node
 
-FROM ghcr.io/celestiaorg/celestia-app:v0.11.0
+FROM ghcr.io/celestiaorg/celestia-app:v0.12.0
 
 COPY --from=celestia-node /celestia /
 
