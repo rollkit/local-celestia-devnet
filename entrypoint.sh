@@ -46,8 +46,8 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
-./celestia bridge init --node.store /bridge
-./celestia bridge start \
+/bin/celestia bridge init --node.store /bridge
+/bin/celestia bridge start \
   --node.store /bridge --gateway \
   --core.ip 127.0.0.1 \
   --keyring.accname validator
