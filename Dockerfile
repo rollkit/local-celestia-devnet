@@ -1,4 +1,4 @@
-FROM ghcr.io/celestiaorg/celestia-node:v0.8.1 AS celestia-node
+FROM ghcr.io/celestiaorg/celestia-node:v0.8.0 AS celestia-node
 
 FROM ghcr.io/celestiaorg/celestia-app:v0.12.1
 
