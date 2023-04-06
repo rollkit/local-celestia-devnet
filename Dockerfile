@@ -1,8 +1,8 @@
-FROM ghcr.io/celestiaorg/celestia-node:v0.7.2 AS celestia-node
+FROM ghcr.io/celestiaorg/celestia-node:v0.8.2 AS celestia-node
 
-FROM ghcr.io/celestiaorg/celestia-app:v0.12.1
+FROM ghcr.io/celestiaorg/celestia-app:0.12.2
 
-COPY --from=celestia-node /celestia /
+COPY --from=celestia-node /bin/celestia /
 
 RUN apk update && apk --no-cache add curl jq libc6-compat
 
