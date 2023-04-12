@@ -1,15 +1,22 @@
-FROM ghcr.io/celestiaorg/celestia-node:v0.8.2 AS celestia-node
+FROM ghcr.io/celestiaorg/celestia-app:0.12.2 AS celestia-app
 
-FROM ghcr.io/celestiaorg/celestia-app:0.12.2
+FROM ghcr.io/celestiaorg/celestia-node:v0.8.2
 
-COPY --from=celestia-node /bin/celestia /
+USER root
 
-RUN apk update && apk --no-cache add curl jq libc6-compat
+# hadolint ignore=DL3018
+RUN apk --no-cache \
+        add \
+        curl \
+        jq \
+        libc6-compat
 
-COPY entrypoint.sh /
+USER ${USER_NAME}
 
-RUN chmod +x /entrypoint.sh 
+COPY --from=celestia-app /bin/celestia-appd /bin/
+
+COPY entrypoint.sh /opt/entrypoint.sh
 
 EXPOSE 26657 26659 9090
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ "/bin/bash", "/opt/entrypoint.sh" ]
