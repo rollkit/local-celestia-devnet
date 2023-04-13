@@ -5,8 +5,7 @@ FROM ghcr.io/celestiaorg/celestia-node:v0.8.2
 USER root
 
 # hadolint ignore=DL3018
-RUN apk --no-cache \
-        add \
+RUN apk --no-cache add \
         curl \
         jq \
         libc6-compat
