@@ -10,7 +10,7 @@ RUN apk --no-cache add \
         jq \
         libc6-compat
 
-USER ${USER_NAME}
+USER celestia
 
 COPY --from=celestia-app /bin/celestia-appd /bin/
 
