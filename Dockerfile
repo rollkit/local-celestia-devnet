@@ -8,7 +8,8 @@ USER root
 RUN apk --no-cache add \
         curl \
         jq \
-        libc6-compat
+    && mkdir /bridge \
+    && chown celestia:celestia /bridge
 
 USER celestia
 
