@@ -43,7 +43,7 @@ while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do
 	sleep 1
 done
 
-export CELESTIA_CUSTOM=test:$GENESIS
+export CELESTIA_CUSTOM=private:$GENESIS
 echo $CELESTIA_CUSTOM
 
 celestia bridge init --node.store /bridge
