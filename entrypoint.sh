@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CHAINID="test"
+CHAINID="private"
 
 rm -rf /root/.celestia-app
 
