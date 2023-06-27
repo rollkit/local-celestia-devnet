@@ -50,4 +50,5 @@ celestia bridge init --node.store /bridge
 celestia bridge start \
   --node.store /bridge --gateway \
   --core.ip 127.0.0.1 \
-  --keyring.accname validator
+  --keyring.accname validator \
+  --gateway.deprecated-endpoints
