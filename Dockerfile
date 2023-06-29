@@ -17,6 +17,6 @@ COPY --from=celestia-app /bin/celestia-appd /bin/
 
 COPY entrypoint.sh /opt/entrypoint.sh
 
-EXPOSE 26657 26659 9090
+EXPOSE 26657 26658 26659 9090
 
 ENTRYPOINT [ "/bin/bash", "/opt/entrypoint.sh" ]
