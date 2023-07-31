@@ -6,7 +6,7 @@ devnet node for testing without depending on the network or service.
 ## To run the Docker image from ghcr.io
 
 ```bash
-Docker run --platform linux/amd64 \
+docker run --platform linux/amd64 \
     -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
     ghcr.io/rollkit/local-celestia-devnet:latest
 ```
@@ -28,13 +28,13 @@ cd local-celestia-devnet/
 To build the Docker image:
 
 ```bash
-Docker build . -t celestia-local-devnet
+docker build . -t celestia-local-devnet
 ```
 
 To run the Docker container:
 
 ```bash
-Docker run --platform linux/amd64 \
+docker run --platform linux/amd64 \
     -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
     celestia-local-devnet
 ```
