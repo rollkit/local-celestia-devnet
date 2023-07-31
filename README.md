@@ -39,7 +39,7 @@ docker run \
     celestia-local-devnet
 ```
 
-Test that the RPC server is up:
+Test that the HTTP gateway server is up:
 
 ```bash
 curl -X GET http://127.0.0.1:26659/head
