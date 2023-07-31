@@ -44,3 +44,17 @@ Test that the RPC server is up:
 ```bash
 curl -X GET http://127.0.0.1:26659/head
 ```
+
+## Exposed Ports
+
+| Port  | Protocol | Address   | Description |
+|-------|----------|-----------|-------------|
+| 26657 | HTTP     | 127.0.0.1 | RPC         |
+| 26658 | HTTP     | 127.0.0.1 | RPC         |
+| 26659 | HTTP     | 127.0.0.1 | REST        |
+| 9090  | HTTP     | 0.0.0.0   | gRPC        |
+
+You can also find a section on port usage in the
+[`celestia-app` tutorial](https://docs.celestia.org/nodes/celestia-app/#ports)
+and the node
+[troubleshooting section](https://docs.celestia.org/nodes/celestia-node-troubleshooting/#ports).
