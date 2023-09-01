@@ -12,8 +12,8 @@ celestia-appd keys add validator --keyring-backend="test"
 celestia-appd add-genesis-account $(celestia-appd keys show validator -a --keyring-backend="test") $coins
 celestia-appd gentx validator 5000000000utia \
   --keyring-backend="test" \
-  --chain-id $CHAINID \
-  --evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
+  --chain-id $CHAINID
+  //--evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
 
 celestia-appd collect-gentxs
 
@@ -25,6 +25,21 @@ sed -i'.bak' 's/timeout_commit = "25s"/timeout_commit = "1s"/g' ~/.celestia-app/
 sed -i'.bak' 's/timeout_propose = "3s"/timeout_propose = "1s"/g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/index_all_keys = false/index_all_keys = true/g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/mode = "full"/mode = "validator"/g' ~/.celestia-app/config/config.toml
+
+# Register the validator EVM address
+{
+  # wait for block 1
+  sleep 20
+
+  # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
+  celestia-appd tx qgb register \
+    "$(celestia-appd keys show validator --home "${HOME_DIR}" --bech val -a)" \
+    0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 \
+    --from validator \
+    --home "${HOME_DIR}" \
+    --fees 30000utia -b block \
+    -y
+} &
 
 mkdir -p /bridge/keys/
 cp -r ~/.celestia-app/keyring-test/ /bridge/keys/keyring-test/
