@@ -7,6 +7,7 @@ APP_PATH="/home/celestia/.celestia-app"
 NODE_PATH="/home/celestia/bridge/"
 
 # Check if the folder exists
+echo "Checking if the folder $APP_PATH exists..."
 if [ -d "$APP_PATH" ]; then
   # If it exists, delete it
   echo "The folder $APP_PATH exists. Deleting it..."
