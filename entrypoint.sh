@@ -2,7 +2,20 @@
 
 CHAINID="test"
 
-rm -rf /root/.celestia-app
+# App & node has a celestia user with home dir /home/celestia
+APP_PATH="/home/celestia/.celestia-app"
+NODE_PATH="/home/celestia/bridge/"
+
+# Check if the folder exists
+if [ -d "$APP_PATH" ]; then
+  # If it exists, delete it
+  echo "The folder $APP_PATH exists. Deleting it..."
+  rm -rf "$APP_PATH"
+  echo "Folder deleted."
+else
+  # If it doesn't exist, print a message
+  echo "The folder $APP_PATH does not exist."
+fi
 
 # Build genesis file incl account for passed address
 coins="1000000000000000utia"
@@ -13,7 +26,6 @@ celestia-appd add-genesis-account $(celestia-appd keys show validator -a --keyri
 celestia-appd gentx validator 5000000000utia \
   --keyring-backend="test" \
   --chain-id $CHAINID
-  //--evm-address 0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
 
 celestia-appd collect-gentxs
 
@@ -33,16 +45,16 @@ sed -i'.bak' 's/mode = "full"/mode = "validator"/g' ~/.celestia-app/config/confi
 
   # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
   celestia-appd tx qgb register \
-    "$(celestia-appd keys show validator --home "${HOME_DIR}" --bech val -a)" \
+    "$(celestia-appd keys show validator --home "${APP_PATH}" --bech val -a)" \
     0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 \
     --from validator \
-    --home "${HOME_DIR}" \
+    --home "${APP_PATH}" \
     --fees 30000utia -b block \
     -y
 } &
 
-mkdir -p /bridge/keys/
-cp -r ~/.celestia-app/keyring-test/ /bridge/keys/keyring-test/
+mkdir -p $NODE_PATH/keys
+cp -r $APP_PATH/keyring-test/ $NODE_PATH/keys/keyring-test/
 
 # Start the celestia-app
 celestia-appd start &
@@ -61,11 +73,11 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
-celestia bridge init --node.store /bridge
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store /bridge)
+celestia bridge init --node.store /home/celestia/bridge
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE_PATH})
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
 celestia bridge start \
-  --node.store /bridge --gateway \
+  --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
   --keyring.accname validator \
   --gateway.deprecated-endpoints
