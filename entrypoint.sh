@@ -2,9 +2,9 @@
 
 CHAINID="test"
 
-# App & node has a celestia user with home dir /$HOME/celestia
-APP_PATH="/$HOME/celestia/.celestia-app"
-NODE_PATH="/$HOME/celestia/bridge/"
+# App & node has a celestia user with home dir $HOME/celestia
+APP_PATH="$HOME/celestia/.celestia-app"
+NODE_PATH="$HOME/celestia/bridge/"
 
 # Check if the folder exists
 if [ -d "$APP_PATH" ]; then
@@ -73,7 +73,7 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
-celestia bridge init --node.store /home/celestia/bridge
+celestia bridge init --node.store $HOME/celestia/bridge
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE_PATH})
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
 celestia bridge start \
