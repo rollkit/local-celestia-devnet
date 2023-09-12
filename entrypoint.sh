@@ -73,7 +73,7 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
-celestia bridge init --node.store $HOME/celestia/bridge
+celestia bridge init --node.store /home/celestia/bridge
 export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE_PATH})
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
 celestia bridge start \
