@@ -2,9 +2,9 @@
 
 CHAINID="test"
 
-# App & node has a celestia user with home dir $HOME/celestia
-APP_PATH="$HOME/celestia/.celestia-app"
-NODE_PATH="$HOME/celestia/bridge/"
+# App & node has a celestia user with home dir /home/celestia
+APP_PATH="/home/celestia/.celestia-app"
+NODE_PATH="/home/celestia/bridge/"
 
 # Check if the folder exists
 if [ -d "$APP_PATH" ]; then
