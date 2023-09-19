@@ -1,7 +1,13 @@
 # Local Celestia Devnet
 
 This repo provides a Docker image that allows developers to spin up a local
-devnet node for testing without depending on the network or service.
+Celestia devnet composed of:
+
+- 1 x celestia-app validator node
+- 1 x celestia-node bridge node
+
+For information about the different node types, see
+[here](https://docs.celestia.org/nodes/overview/).
 
 ## To run the Docker image from ghcr.io
 
@@ -54,10 +60,7 @@ curl -X GET http://127.0.0.1:26659/head
 | 26659 | HTTP     | 127.0.0.1 | REST        | Data Availability (e.g `celestia-node`) |
 | 9090  | HTTP     | 0.0.0.0   | gRPC        | Consensus (e.g `celestia-app`)          |
 
-You can also find a section on port usage in the
-[`celestia-app` tutorial](https://docs.celestia.org/nodes/celestia-app/#ports)
-and the node
-[troubleshooting section](https://docs.celestia.org/nodes/celestia-node-troubleshooting/#ports).
+You may also find these docs helpful:
 
-For information about the different node types, see
-[here](https://docs.celestia.org/nodes/overview/).
+- [celestia-app ports](https://docs.celestia.org/nodes/celestia-app/#ports)
+- [celestia-node ports](https://docs.celestia.org/nodes/celestia-node-troubleshooting/#ports)
