@@ -61,7 +61,7 @@ docker run -d -t -i \
 To stop the container when you are attached to the container, you can use
 `Ctrl+C` to stop the container.
 
-To stop the container when ou are detached from the container, you can use the
+To stop the container when you are detached from the container, you can use the
 `docker ps` command to find the container ID:
 
 ```bash
