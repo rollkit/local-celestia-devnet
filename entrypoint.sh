@@ -7,15 +7,15 @@ APP_PATH="/home/celestia/.celestia-app"
 NODE_PATH="/home/celestia/bridge/"
 
 # Check if the folder exists
-echo "🔍 Checking if the folder $APP_PATH exists..."
+echo "Checking if the folder $APP_PATH exists..."
 if [ -d "$APP_PATH" ]; then
   # If it exists, delete it
-  echo "👀 The folder $APP_PATH exists. Deleting it..."
+  echo "The folder $APP_PATH exists. Deleting it..."
   rm -rf "$APP_PATH"
-  echo "👍 Folder deleted."
+  echo "Folder deleted."
 else
   # If it doesn't exist, print a message
-  echo "👍 The folder $APP_PATH does not exist."
+  echo "The folder $APP_PATH does not exist."
 fi
 
 # Build genesis file incl account for passed address
