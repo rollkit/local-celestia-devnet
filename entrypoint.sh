@@ -79,5 +79,4 @@ echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outsid
 celestia bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
-  --keyring.accname validator \
-  --gateway.deprecated-endpoints
+  --keyring.accname validator
