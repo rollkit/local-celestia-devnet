@@ -78,5 +78,7 @@ export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
 celestia bridge start \
   --node.store $NODE_PATH --gateway \
-  --core.ip 127.0.0.1 \
+  # --core.ip 127.0.0.1 \
+  # --core.ip rpc-mocha.pops.one:26657 \
+  # --core.rpc.port 9090 \
   --keyring.accname validator
