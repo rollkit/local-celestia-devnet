@@ -57,7 +57,7 @@ mkdir -p $NODE_PATH/keys
 cp -r $APP_PATH/keyring-test/ $NODE_PATH/keys/keyring-test/
 
 # Start the celestia-app
-celestia-appd start &
+celestia-appd start --grpc.enable &
 
 # Try to get the genesis hash. Usually first request returns an empty string (port is not open, curl fails), later attempts
 # returns "null" if block was not yet produced.
@@ -78,7 +78,5 @@ export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
 celestia bridge start \
   --node.store $NODE_PATH --gateway \
-  # --core.ip 127.0.0.1 \
-  # --core.ip rpc-mocha.pops.one:26657 \
-  # --core.rpc.port 9090 \
+  --core.ip 127.0.0.1 \
   --keyring.accname validator
