@@ -73,10 +73,13 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo $CELESTIA_CUSTOM
 
-celestia bridge init --node.store /home/celestia/bridge
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE_PATH})
+celestia-da bridge init --node.store /home/celestia/bridge
+export CELESTIA_NODE_AUTH_TOKEN=$(celestia-da bridge auth admin --node.store ${NODE_PATH})
 echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
-celestia bridge start \
+celestia-da bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
-  --keyring.accname validator
+  --keyring.accname validator \
+  --grpc.token "$CELESTIA_NODE_AUTH_TOKEN" \
+  --grpc.namespace "000008e5f679bf7116cb" \
+  --grpc.listen "127.0.0.1:26650"
