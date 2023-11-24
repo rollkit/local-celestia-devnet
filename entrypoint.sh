@@ -70,8 +70,11 @@ while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do
 	sleep 1
 done
 
-CELESTIA_CUSTOM=test:$GENESIS celestia-da bridge init --node.store /home/celestia/bridge
-CELESTIA_CUSTOM=test:$GENESIS celestia-da bridge start \
+export CELESTIA_CUSTOM=test:$GENESIS
+echo $CELESTIA_CUSTOM
+
+celestia-da bridge init --node.store /home/celestia/bridge
+celestia-da bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
   --keyring.accname validator \
