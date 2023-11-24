@@ -82,4 +82,4 @@ celestia-da bridge start \
   --keyring.accname validator \
   --grpc.token "$CELESTIA_NODE_AUTH_TOKEN" \
   --grpc.namespace "000008e5f679bf7116cb" \
-  --grpc.listen "127.0.0.1:26650"
+  --grpc.listen "0.0.0.0:26650"
