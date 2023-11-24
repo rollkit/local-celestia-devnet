@@ -96,6 +96,12 @@ docker rm <container-id>
 | 26659 | HTTP     | 127.0.0.1 | REST        | Data Availability (e.g `celestia-node`) |
 | 9090  | HTTP     | 0.0.0.0   | gRPC        | Consensus (e.g `celestia-app`)          |
 
+## Environment Variables
+
+| Variable               | Description                     | Default            |
+|------------------------|---------------------------------|--------------------|
+| CELESTIA_NAMESPACE     | Namespace to use for DA Service | Randomly generated |
+
 You may also find these docs helpful:
 
 - [celestia-app ports](https://docs.celestia.org/nodes/celestia-app/#ports)
