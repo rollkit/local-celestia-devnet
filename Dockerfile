@@ -8,6 +8,7 @@ USER root
 RUN apk --no-cache add \
         curl \
         jq \
+        openssl \
     && mkdir /bridge \
     && chown celestia:celestia /bridge
 
