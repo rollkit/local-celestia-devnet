@@ -71,12 +71,17 @@ while [ "${#GENESIS}" -le 4 -a $CNT -ne $MAX ]; do
 done
 
 export CELESTIA_CUSTOM=test:$GENESIS
-echo $CELESTIA_CUSTOM
+echo "$CELESTIA_CUSTOM"
 
-celestia bridge init --node.store /home/celestia/bridge
-export CELESTIA_NODE_AUTH_TOKEN=$(celestia bridge auth admin --node.store ${NODE_PATH})
-echo "WARNING: Keep this auth token secret **DO NOT** log this auth token outside of development. CELESTIA_NODE_AUTH_TOKEN=$CELESTIA_NODE_AUTH_TOKEN"
-celestia bridge start \
+if [ -z "$CELESTIA_NAMESPACE" ]; then
+    CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
+fi
+echo CELESTIA_NAMESPACE="$CELESTIA_NAMESPACE"
+
+celestia-da bridge init --node.store /home/celestia/bridge
+celestia-da bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
-  --keyring.accname validator
+  --keyring.accname validator \
+  --da.grpc.namespace "$CELESTIA_NAMESPACE" \
+  --da.grpc.listen "0.0.0.0:26650"

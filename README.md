@@ -13,7 +13,7 @@ For information about the different node types, see
 
 ```bash
 docker run -t -i \
-    -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
+    -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
     ghcr.io/rollkit/local-celestia-devnet:latest
 ```
 
@@ -41,7 +41,7 @@ To run the Docker container:
 
 ```bash
 docker run -t -i \
-    -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
+    -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
     celestia-local-devnet
 ```
 
@@ -58,7 +58,7 @@ If you would like the run the container in the background, you can use the
 
 ```bash
 docker run -d -t -i \
-    -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
+    -p 26650:26650 -p 26657:26657 -p 26658:26658 -p 26659:26659 -p 9090:9090 \
     celestia-local-devnet
 ```
 
@@ -90,10 +90,17 @@ docker rm <container-id>
 
 | Port  | Protocol | Address   | Description | Node Type                               |
 |-------|----------|-----------|-------------|-----------------------------------------|
+| 26650 | gRPC     | 127.0.0.1 | gRPC        | Data Availability Service               |
 | 26657 | HTTP     | 127.0.0.1 | RPC         | Consensus (e.g `celestia-app`)          |
 | 26658 | HTTP     | 127.0.0.1 | RPC         | Data Availability (e.g `celestia-node`) |
 | 26659 | HTTP     | 127.0.0.1 | REST        | Data Availability (e.g `celestia-node`) |
 | 9090  | HTTP     | 0.0.0.0   | gRPC        | Consensus (e.g `celestia-app`)          |
+
+## Environment Variables
+
+| Variable               | Description                     | Default            |
+|------------------------|---------------------------------|--------------------|
+| CELESTIA_NAMESPACE     | Namespace to use for DA Service | Randomly generated |
 
 You may also find these docs helpful:
 

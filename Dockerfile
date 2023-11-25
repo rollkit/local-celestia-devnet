@@ -1,6 +1,6 @@
 FROM ghcr.io/celestiaorg/celestia-app:v1.4.0 AS celestia-app
 
-FROM ghcr.io/celestiaorg/celestia-node:v0.12.0
+FROM ghcr.io/rollkit/celestia-da:v0.12.1-rc0
 
 USER root
 
@@ -8,6 +8,7 @@ USER root
 RUN apk --no-cache add \
         curl \
         jq \
+        openssl \
     && mkdir /bridge \
     && chown celestia:celestia /bridge
 
@@ -17,6 +18,6 @@ COPY --from=celestia-app /bin/celestia-appd /bin/
 
 COPY entrypoint.sh /opt/entrypoint.sh
 
-EXPOSE 26657 26658 26659 9090
+EXPOSE 26650 26657 26658 26659 9090
 
 ENTRYPOINT [ "/bin/bash", "/opt/entrypoint.sh" ]
