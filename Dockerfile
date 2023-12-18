@@ -1,6 +1,6 @@
 FROM ghcr.io/celestiaorg/celestia-app:v1.4.0 AS celestia-app
 
-FROM ghcr.io/rollkit/celestia-da:4ab682e
+FROM ghcr.io/rollkit/celestia-da:49633a0
 
 USER root
 
