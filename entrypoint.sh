@@ -33,8 +33,17 @@ celestia-appd collect-gentxs
 # If you encounter: `sed: -I or -i may not be used with stdin` on MacOS you can mitigate by installing gnu-sed
 # https://gist.github.com/andre3k1/e3a1a7133fded5de5a9ee99c87c6fa0d?permalink_comment_id=3082272#gistcomment-3082272
 sed -i'.bak' 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
-sed -i'.bak' 's/^timeout_commit\s*=.*/timeout_commit = "1s"/g' ~/.celestia-app/config/config.toml
-sed -i'.bak' 's/^timeout_propose\s*=.*/timeout_propose = "1s"/g' ~/.celestia-app/config/config.toml
+
+# Adjusting consensus timeouts for faster block times
+sed -i'.bak' 's/^timeout_commit\s*=.*/timeout_commit = "100ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_propose\s*=.*/timeout_propose = "100ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_propose_delta\s*=.*/timeout_propose_delta = "50ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_prevote\s*=.*/timeout_prevote = "50ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_prevote_delta\s*=.*/timeout_prevote_delta = "25ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_precommit\s*=.*/timeout_precommit = "50ms"/g' ~/.celestia-app/config/config.toml
+sed -i'.bak' 's/^timeout_precommit_delta\s*=.*/timeout_precommit_delta = "25ms"/g' ~/.celestia-app/config/config.toml
+
+# Other configurations
 sed -i'.bak' 's/index_all_keys = false/index_all_keys = true/g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/mode = "full"/mode = "validator"/g' ~/.celestia-app/config/config.toml
 
