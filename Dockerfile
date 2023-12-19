@@ -6,8 +6,9 @@ USER root
 
 # hadolint ignore=DL3018
 RUN apk --no-cache add \
-        curl \
-        jq \
+    curl \
+    jq \
+    moreutils \
     && mkdir /bridge \
     && chown celestia:celestia /bridge
 
