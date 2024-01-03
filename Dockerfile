@@ -1,4 +1,4 @@
-FROM ghcr.io/celestiaorg/celestia-app:v1.4.0 AS celestia-app
+FROM ghcr.io/celestiaorg/celestia-app:v1.6.0 AS celestia-app
 
 FROM ghcr.io/rollkit/celestia-da:v0.12.1-rc3
 
