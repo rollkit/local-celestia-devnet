@@ -83,5 +83,7 @@ celestia-da bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
   --keyring.accname validator \
+  --gateway.addr 0.0.0.0 \
+  --rpc.addr 0.0.0.0 \
   --da.grpc.namespace "$CELESTIA_NAMESPACE" \
   --da.grpc.listen "0.0.0.0:26650"
