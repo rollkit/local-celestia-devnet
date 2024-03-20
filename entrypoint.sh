@@ -73,17 +73,10 @@ done
 export CELESTIA_CUSTOM=test:$GENESIS
 echo "$CELESTIA_CUSTOM"
 
-if [ -z "$CELESTIA_NAMESPACE" ]; then
-    CELESTIA_NAMESPACE=0000$(openssl rand -hex 8)
-fi
-echo CELESTIA_NAMESPACE="$CELESTIA_NAMESPACE"
-
-celestia-da bridge init --node.store /home/celestia/bridge
-celestia-da bridge start \
+celestia bridge init --node.store /home/celestia/bridge
+celestia bridge start \
   --node.store $NODE_PATH --gateway \
   --core.ip 127.0.0.1 \
   --keyring.accname validator \
   --gateway.addr 0.0.0.0 \
   --rpc.addr 0.0.0.0 \
-  --da.grpc.namespace "$CELESTIA_NAMESPACE" \
-  --da.grpc.listen "0.0.0.0:26650"
