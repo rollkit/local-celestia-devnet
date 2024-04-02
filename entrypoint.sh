@@ -35,8 +35,6 @@ celestia-appd collect-gentxs
 sed -i'.bak' 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/^timeout_commit\s*=.*/timeout_commit = "2s"/g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/^timeout_propose\s*=.*/timeout_propose = "2s"/g' ~/.celestia-app/config/config.toml
-sed -i'.bak' 's/index_all_keys = false/index_all_keys = true/g' ~/.celestia-app/config/config.toml
-sed -i'.bak' 's/mode = "full"/mode = "validator"/g' ~/.celestia-app/config/config.toml
 
 mkdir -p $NODE_PATH/keys
 cp -r $APP_PATH/keyring-test/ $NODE_PATH/keys/keyring-test/
