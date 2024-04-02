@@ -36,21 +36,6 @@ sed -i'.bak' 's#"tcp://127.0.0.1:26657"#"tcp://0.0.0.0:26657"#g' ~/.celestia-app
 sed -i'.bak' 's/^timeout_commit\s*=.*/timeout_commit = "2s"/g' ~/.celestia-app/config/config.toml
 sed -i'.bak' 's/^timeout_propose\s*=.*/timeout_propose = "2s"/g' ~/.celestia-app/config/config.toml
 
-# Register the validator EVM address
-{
-  # wait for block 1
-  sleep 20
-
-  # private key: da6ed55cb2894ac2c9c10209c09de8e8b9d109b910338d5bf3d747a7e1fc9eb9
-  celestia-appd tx qgb register \
-    "$(celestia-appd keys show validator --home "${APP_PATH}" --bech val -a)" \
-    0x966e6f22781EF6a6A82BBB4DB3df8E225DfD9488 \
-    --from validator \
-    --home "${APP_PATH}" \
-    --fees 30000utia -b block \
-    -y
-} &
-
 mkdir -p $NODE_PATH/keys
 cp -r $APP_PATH/keyring-test/ $NODE_PATH/keys/keyring-test/
 
